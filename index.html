@@ -3,28 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Hyundai Motors India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .nav {
+            width: 100%;
+            background: #003366;
+            padding: 2% 5%;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu {
+            display: none;
+            cursor: pointer;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+        }
+        .nav ul li {
+            margin: 0 10px;
+        }
+        .nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .home {
+            width: 100%;
+            height: 100vh;
+            background: url('about-car.jpg') no-repeat center center/cover;
+        }
+        .about {
+            width: 90%;
+            margin: 5% auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        .about img {
+            width: 40%;
+            max-width: 400px;
+        }
+        .about p {
+            width: 50%;
+            padding: 2%;
+        }
+        .form-section {
+            width: 90%;
+            margin: 5% auto;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .footer {
+            width: 100%;
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 2%;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: block;
+            }
+            .nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #003366;
+                position: absolute;
+                top: 50px;
+                left: 0;
+            }
+            .nav ul.show {
+                display: flex;
+            }
+            .about img, .about p, form {
+                width: 90%;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav ul').classList.toggle('show');
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Hyundai</div>
-            <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="hero">
-            <h1>Welcome to Our Website</h1>
-            <p>We provide the best solutions for you.</p>
-        </section>
-    </main>
-    <script src="script.js"></script>
+    <nav class="nav">
+        <h1>Hyundai Motors India</h1>
+        <div class="menu" onclick="toggleMenu()">☰</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#demo">Demo Ride</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="home"></section>
+    <section id="about" class="about">
+        <img src="logo.png" alt="Hyundai Car">
+        <p>
+            Hyundai Motor India Ltd. (HMIL) is a subsidiary of Hyundai Motor Company, South Korea. Established in 1996, it is the second-largest car manufacturer in India and a leading exporter of passenger vehicles. The company operates a state-of-the-art manufacturing facility in Sriperumbudur, Tamil Nadu, with a production capacity of over 850,000 units annually. Hyundai India is known for popular models like the Creta, Venue, i20, and Verna, and has been expanding its electric vehicle portfolio with models like the Ioniq 5.
+        </p>
+    </section>
+    <section id="demo" class="form-section">
+        <h2>Book a Demo Ride</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="tel" placeholder="Your Phone" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <footer id="contact" class="footer">
+        <p>Contact: Hyundai Motors India | Email: contact@hyundai.in | Phone: +91 12345 67890</p>
+    </footer>
 </body>
 </html>
