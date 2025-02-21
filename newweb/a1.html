@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Test Drive - Kia Motors India</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @font-face {
+      font-family: 'KiaSignature';
+      src: url('https://www.kia.com/content/dam/kia2/in/fonts/KiaSignatureRegular.woff2') format('woff2');
+    }
+
+    .form-page {
+      margin-top: 70px;
+      min-height: calc(100vh - 70px);
+      background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+      padding: 4rem 0;
+    }
+
+    .form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .form-image {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .form-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .form-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-content h2 {
+      font-family: 'KiaSignature', sans-serif;
+      color: #05141f;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #05141f;
+      font-weight: 500;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e5e5e5;
+      border-radius: 0.5rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      border-color: #05141f;
+      outline: none;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .submit-btn {
+      background-color: #05141f;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #dc2626;
+    }
+
+    /* Floating Calculator */
+    .calculator-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #05141f;
+      color: white;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .calculator-container {
+      position: fixed;
+      bottom: 6rem;
+      right: 2rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+      z-index: 1000;
+    }
+
+    .calculator-container.active {
+      display: block;
+    }
+
+    .calculator-screen {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      text-align: right;
+      font-size: 1.5rem;
+    }
+
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .calc-btn {
+      padding: 0.75rem;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .calc-btn:hover {
+      background: #e5e5e5;
+    }
+
+    .calc-btn.operator {
+      background: #05141f;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        grid-template-columns: 1fr;
+      }
+
+      .form-image {
+        height: 300px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8l4 4-4 4"/></svg>
+        <span>KIA</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="mobile-menu-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="index.html" class="active">Home</a>
+    <a href="index.html#about">About Us</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <div class="form-page">
+    <div class="form-container">
+      <div class="form-image">
+        <img src="/api/placeholder/600/800" alt="Kia Showroom">
+      </div>
+      <div class="form-content">
+        <h2>Schedule Your Test Drive</h2>
+        <form id="testDriveForm">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" required>
+            </div>
+            <div class="form-field">
+              <label for="model">Preferred Model</label>
+              <select id="model" required>
+                <option value="">Select a model</option>
+                <option value="seltos">Seltos</option>
+                <option value="sonet">Sonet</option>
+                <option value="carnival">Carnival</option>
+                <option value="carens">Carens</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div class="form-field">
+              <label for="time">Preferred Time</label>
+              <input type="time" id="time" required>
+            </div>
+            <div class="form-field full-width">
+              <label for="location">Preferred Dealership Location</label>
+              <select id="location" required>
+                <option value="">Select a location</option>
+                <option value="delhi">Delhi</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="bangalore">Bangalore</option>
+                <option value="chennai">Chennai</option>
+              </select>
+            </div>
+            <div class="form-field full-width">
+              <button type="submit" class="submit-btn">Schedule Test Drive</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Calculator -->
+  <div class="calculator-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+      <line x1="8" y1="6" x2="16" y2="6"/>
+      <line x1="8" y1="10" x2="16" y2="10"/>
+      <line x1="8" y1="14" x2="16" y2="14"/>
+      <line x1="8" y1="18" x2="16" y2="18"/>
+    </svg>
+  </div>
+
+  <div class="calculator-container">
+    <div class="calculator-screen">0</div>
+    <div class="calculator-buttons">
+      <button class="calc-btn">7</button>
+      <button class="calc-btn">8</button>
+      <button class="calc-btn">9</button>
+      <button class="calc-btn operator">/</button>
+      <button class="calc-btn">4</button>
+      <button class="calc-btn">5</button>
+      <button class="calc-btn">6</button>
+      <button class="calc-btn operator">*</button>
+      <button class="calc-btn">1</button>
+      <button class="calc-btn">2</button>
+      <button class="calc-btn">3</button>
+      <button class="calc-btn operator">-</button>
+      <button class="calc-btn">0</button>
+      <button class="calc-btn">.</button>
+      <button class="calc-btn operator">=</button>
+      <button class="calc-btn operator">+</button>
+    </div>
+  </div>
+
+  <script>
+    // Calculator functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const calculatorToggle = document.querySelector('.calculator-toggle');
+      const calculatorContainer = document.querySelector('.calculator-container');
+      const calculatorScreen = document.querySelector('.calculator-screen');
+      const calculatorButtons = document.querySelector('.calculator-buttons');
+      
+      let currentValue = '0';
+      let previousValue = '';
+      let operation = null;
+      let shouldResetScreen = false;
+
+      calculatorToggle.addEventListener('click', () => {
+        calculatorContainer.classList.toggle('active');
+      });
+
+      calculatorButtons.addEventListener('click', (e) => {
+        if (!e.target.matches('button')) return;
+
+        const button = e.target;
+        const buttonValue = button.textContent;
+
+        if (button.classList.contains('operator')) {
+          handleOperator(buttonValue);
+        } else {
+          handleNumber(buttonValue);
+        }
+
+        updateDisplay();
+      });
+
+      function handleNumber(number) {
+        if (shouldResetScreen) {
+          currentValue = '';
+          shouldResetScreen = false;
+        }
+        currentValue = currentValue === '0' ? number : currentValue + number;
+      }
+
+      function handleOperator(op) {
+        if (operation && !shouldResetScreen) {
+          calculate();
+        }
+
+        if (op === '=') {
+          calculate();
+          operation = null;
+        } else {
+          previousValue = currentValue;
+          operation = op;
+          shouldResetScreen = true;
+        }
+      }
+
+      function calculate() {
+        let result;
+        const prev = parseFloat(previousValue);
+        const current = parseFloat(currentValue);
+
+        if (isNaN(prev) || isNaN(current)) return;
+
+        switch (operation) {
+          case '+':
+            result = prev + current;
+            break;
+          case '-':
+            result = prev - current;
+            break;
+          case '*':
+            result = prev * current;
+            break;
+          case '/':
+            result = prev / current;
+            break;
+          default:
+            return;
+        }
+
+        currentValue = result.toString();
+        shouldResetScreen = true;
+      }
+
+      function updateDisplay() {
+        calculatorScreen.textContent = currentValue;
+      }
+    });
+
+    // Form submission
+    document.getElementById('testDriveForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for scheduling a test drive! We will contact you shortly to confirm your appointment.');
+    });
+  </script>
+</body>
+</html>
